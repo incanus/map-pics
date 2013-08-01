@@ -7,52 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD57E74217A970ED00571387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57E74017A970ED00571387 /* InfoPlist.strings */; };
+		DD57E74417A970ED00571387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E74317A970ED00571387 /* main.m */; };
+		DD57E74817A970ED00571387 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E74717A970ED00571387 /* MPAppDelegate.m */; };
+		DD57E75117A970ED00571387 /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E75017A970ED00571387 /* MPViewController.m */; };
+		DD57E77017A9760200571387 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57E76F17A9760200571387 /* UIKit.framework */; };
+		DD57E77217A9761500571387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57E77117A9761500571387 /* MapKit.framework */; };
+		DD57E78117A97B7000571387 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E77317A97B7000571387 /* MPAppDelegate.m */; };
+		DD57E78317A97B7000571387 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77717A97B7000571387 /* MainMenu.xib */; };
+		DD57E78417A97B7000571387 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77A17A97B7000571387 /* Credits.rtf */; };
+		DD57E78517A97B7000571387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77C17A97B7000571387 /* InfoPlist.strings */; };
+		DD57E78717A97B7000571387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E77F17A97B7000571387 /* main.m */; };
 		DDDEEF4B17A952E6003D2C20 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */; };
-		DDDEEF5517A952E6003D2C20 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDDEEF5317A952E6003D2C20 /* InfoPlist.strings */; };
-		DDDEEF5717A952E6003D2C20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDEEF5617A952E6003D2C20 /* main.m */; };
-		DDDEEF5B17A952E6003D2C20 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DDDEEF5917A952E6003D2C20 /* Credits.rtf */; };
-		DDDEEF5E17A952E6003D2C20 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDEEF5D17A952E6003D2C20 /* MPAppDelegate.m */; };
-		DDDEEF6117A952E6003D2C20 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDDEEF5F17A952E6003D2C20 /* MainMenu.xib */; };
-		DDDEEF6317A952E6003D2C20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDDEEF6217A952E6003D2C20 /* Images.xcassets */; };
-		DDDEEF6A17A952E6003D2C20 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDEEF6917A952E6003D2C20 /* XCTest.framework */; };
-		DDDEEF6B17A952E6003D2C20 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */; };
-		DDDEEF7317A952E6003D2C20 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDDEEF7117A952E6003D2C20 /* InfoPlist.strings */; };
-		DDDEEF7517A952E6003D2C20 /* Map_PicsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDEEF7417A952E6003D2C20 /* Map_PicsTests.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DDDEEF6C17A952E6003D2C20 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DDDEEF3F17A952E6003D2C20 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DDDEEF4617A952E6003D2C20;
-			remoteInfo = "Map Pics";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		DD57E73617A970ED00571387 /* Map Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Pics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD57E73F17A970ED00571387 /* Map Pics iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Map Pics iOS-Info.plist"; path = "Map Pics iOS/Map Pics iOS-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DD57E74117A970ED00571387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DD57E74317A970ED00571387 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Map Pics iOS/main.m"; sourceTree = SOURCE_ROOT; };
+		DD57E74517A970ED00571387 /* Map Pics iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Map Pics iOS-Prefix.pch"; path = "Map Pics iOS/Map Pics iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DD57E74617A970ED00571387 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPAppDelegate.h; path = "Map Pics iOS/MPAppDelegate.h"; sourceTree = SOURCE_ROOT; };
+		DD57E74717A970ED00571387 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = "Map Pics iOS/MPAppDelegate.m"; sourceTree = SOURCE_ROOT; };
+		DD57E74F17A970ED00571387 /* MPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPViewController.h; path = "Map Pics iOS/MPViewController.h"; sourceTree = SOURCE_ROOT; };
+		DD57E75017A970ED00571387 /* MPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPViewController.m; path = "Map Pics iOS/MPViewController.m"; sourceTree = SOURCE_ROOT; };
+		DD57E76F17A9760200571387 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		DD57E77117A9761500571387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
+		DD57E77317A97B7000571387 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = "Map Pics Mac/MPAppDelegate.m"; sourceTree = SOURCE_ROOT; };
+		DD57E77417A97B7000571387 /* Map Pics Mac-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Map Pics Mac-Info.plist"; path = "Map Pics Mac/Map Pics Mac-Info.plist"; sourceTree = SOURCE_ROOT; };
+		DD57E77517A97B7000571387 /* MPAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPAppDelegate.h; path = "Map Pics Mac/MPAppDelegate.h"; sourceTree = SOURCE_ROOT; };
+		DD57E77817A97B7000571387 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MainMenu.xib; sourceTree = "<group>"; };
+		DD57E77B17A97B7000571387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = Credits.rtf; sourceTree = "<group>"; };
+		DD57E77D17A97B7000571387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		DD57E77F17A97B7000571387 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Map Pics Mac/main.m"; sourceTree = SOURCE_ROOT; };
+		DD57E78017A97B7000571387 /* Map Pics Mac-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Map Pics Mac-Prefix.pch"; path = "Map Pics Mac/Map Pics Mac-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		DDDEEF4717A952E6003D2C20 /* Map Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Pics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		DDDEEF4D17A952E6003D2C20 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		DDDEEF4E17A952E6003D2C20 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		DDDEEF4F17A952E6003D2C20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		DDDEEF5217A952E6003D2C20 /* Map Pics-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Map Pics-Info.plist"; sourceTree = "<group>"; };
-		DDDEEF5417A952E6003D2C20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DDDEEF5617A952E6003D2C20 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DDDEEF5817A952E6003D2C20 /* Map Pics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Map Pics-Prefix.pch"; sourceTree = "<group>"; };
-		DDDEEF5A17A952E6003D2C20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		DDDEEF5C17A952E6003D2C20 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPAppDelegate.h; sourceTree = "<group>"; };
-		DDDEEF5D17A952E6003D2C20 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPAppDelegate.m; sourceTree = "<group>"; };
-		DDDEEF6017A952E6003D2C20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		DDDEEF6217A952E6003D2C20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DDDEEF6817A952E6003D2C20 /* Map PicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Map PicsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDDEEF6917A952E6003D2C20 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		DDDEEF7017A952E6003D2C20 /* Map PicsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Map PicsTests-Info.plist"; sourceTree = "<group>"; };
-		DDDEEF7217A952E6003D2C20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		DDDEEF7417A952E6003D2C20 /* Map_PicsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Map_PicsTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DD57E73317A970ED00571387 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57E77217A9761500571387 /* MapKit.framework in Frameworks */,
+				DD57E77017A9760200571387 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDDEEF4417A952E6003D2C20 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,24 +63,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DDDEEF6517A952E6003D2C20 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DDDEEF6B17A952E6003D2C20 /* Cocoa.framework in Frameworks */,
-				DDDEEF6A17A952E6003D2C20 /* XCTest.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD57E73D17A970ED00571387 /* Map Pics iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DD57E74617A970ED00571387 /* MPAppDelegate.h */,
+				DD57E74717A970ED00571387 /* MPAppDelegate.m */,
+				DD57E74F17A970ED00571387 /* MPViewController.h */,
+				DD57E75017A970ED00571387 /* MPViewController.m */,
+				DD57E73E17A970ED00571387 /* Supporting Files */,
+				DD57E76E17A9759F00571387 /* Frameworks */,
+			);
+			path = "Map Pics iOS";
+			sourceTree = "<group>";
+		};
+		DD57E73E17A970ED00571387 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DD57E73F17A970ED00571387 /* Map Pics iOS-Info.plist */,
+				DD57E74017A970ED00571387 /* InfoPlist.strings */,
+				DD57E74317A970ED00571387 /* main.m */,
+				DD57E74517A970ED00571387 /* Map Pics iOS-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DD57E76E17A9759F00571387 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DD57E77117A9761500571387 /* MapKit.framework */,
+				DD57E76F17A9760200571387 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DDDEEF3E17A952E6003D2C20 = {
 			isa = PBXGroup;
 			children = (
-				DDDEEF5017A952E6003D2C20 /* Map Pics */,
-				DDDEEF6E17A952E6003D2C20 /* Map PicsTests */,
-				DDDEEF4917A952E6003D2C20 /* Frameworks */,
+				DDDEEF5017A952E6003D2C20 /* Map Pics Mac */,
+				DD57E73D17A970ED00571387 /* Map Pics iOS */,
 				DDDEEF4817A952E6003D2C20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				DDDEEF4717A952E6003D2C20 /* Map Pics.app */,
-				DDDEEF6817A952E6003D2C20 /* Map PicsTests.xctest */,
+				DD57E73617A970ED00571387 /* Map Pics.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,60 +121,32 @@
 			isa = PBXGroup;
 			children = (
 				DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */,
-				DDDEEF6917A952E6003D2C20 /* XCTest.framework */,
-				DDDEEF4C17A952E6003D2C20 /* Other Frameworks */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
-		DDDEEF4C17A952E6003D2C20 /* Other Frameworks */ = {
+		DDDEEF5017A952E6003D2C20 /* Map Pics Mac */ = {
 			isa = PBXGroup;
 			children = (
-				DDDEEF4D17A952E6003D2C20 /* AppKit.framework */,
-				DDDEEF4E17A952E6003D2C20 /* CoreData.framework */,
-				DDDEEF4F17A952E6003D2C20 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		DDDEEF5017A952E6003D2C20 /* Map Pics */ = {
-			isa = PBXGroup;
-			children = (
-				DDDEEF5C17A952E6003D2C20 /* MPAppDelegate.h */,
-				DDDEEF5D17A952E6003D2C20 /* MPAppDelegate.m */,
-				DDDEEF5F17A952E6003D2C20 /* MainMenu.xib */,
-				DDDEEF6217A952E6003D2C20 /* Images.xcassets */,
+				DD57E77517A97B7000571387 /* MPAppDelegate.h */,
+				DD57E77317A97B7000571387 /* MPAppDelegate.m */,
+				DD57E77717A97B7000571387 /* MainMenu.xib */,
 				DDDEEF5117A952E6003D2C20 /* Supporting Files */,
+				DDDEEF4917A952E6003D2C20 /* Frameworks */,
 			);
+			name = "Map Pics Mac";
 			path = "Map Pics";
 			sourceTree = "<group>";
 		};
 		DDDEEF5117A952E6003D2C20 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DDDEEF5217A952E6003D2C20 /* Map Pics-Info.plist */,
-				DDDEEF5317A952E6003D2C20 /* InfoPlist.strings */,
-				DDDEEF5617A952E6003D2C20 /* main.m */,
-				DDDEEF5817A952E6003D2C20 /* Map Pics-Prefix.pch */,
-				DDDEEF5917A952E6003D2C20 /* Credits.rtf */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DDDEEF6E17A952E6003D2C20 /* Map PicsTests */ = {
-			isa = PBXGroup;
-			children = (
-				DDDEEF7417A952E6003D2C20 /* Map_PicsTests.m */,
-				DDDEEF6F17A952E6003D2C20 /* Supporting Files */,
-			);
-			path = "Map PicsTests";
-			sourceTree = "<group>";
-		};
-		DDDEEF6F17A952E6003D2C20 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DDDEEF7017A952E6003D2C20 /* Map PicsTests-Info.plist */,
-				DDDEEF7117A952E6003D2C20 /* InfoPlist.strings */,
+				DD57E77417A97B7000571387 /* Map Pics Mac-Info.plist */,
+				DD57E77C17A97B7000571387 /* InfoPlist.strings */,
+				DD57E77F17A97B7000571387 /* main.m */,
+				DD57E78017A97B7000571387 /* Map Pics Mac-Prefix.pch */,
+				DD57E77A17A97B7000571387 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -157,9 +154,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DDDEEF4617A952E6003D2C20 /* Map Pics */ = {
+		DD57E73517A970ED00571387 /* Map Pics iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DDDEEF7817A952E6003D2C20 /* Build configuration list for PBXNativeTarget "Map Pics" */;
+			buildConfigurationList = DD57E76617A970EE00571387 /* Build configuration list for PBXNativeTarget "Map Pics iOS" */;
+			buildPhases = (
+				DD57E73217A970ED00571387 /* Sources */,
+				DD57E73317A970ED00571387 /* Frameworks */,
+				DD57E73417A970ED00571387 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Map Pics iOS";
+			productName = "Map Pics iOS";
+			productReference = DD57E73617A970ED00571387 /* Map Pics.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DDDEEF4617A952E6003D2C20 /* Map Pics Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDDEEF7817A952E6003D2C20 /* Build configuration list for PBXNativeTarget "Map Pics Mac" */;
 			buildPhases = (
 				DDDEEF4317A952E6003D2C20 /* Sources */,
 				DDDEEF4417A952E6003D2C20 /* Frameworks */,
@@ -169,28 +183,10 @@
 			);
 			dependencies = (
 			);
-			name = "Map Pics";
+			name = "Map Pics Mac";
 			productName = "Map Pics";
 			productReference = DDDEEF4717A952E6003D2C20 /* Map Pics.app */;
 			productType = "com.apple.product-type.application";
-		};
-		DDDEEF6717A952E6003D2C20 /* Map PicsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DDDEEF7B17A952E6003D2C20 /* Build configuration list for PBXNativeTarget "Map PicsTests" */;
-			buildPhases = (
-				DDDEEF6417A952E6003D2C20 /* Sources */,
-				DDDEEF6517A952E6003D2C20 /* Frameworks */,
-				DDDEEF6617A952E6003D2C20 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DDDEEF6D17A952E6003D2C20 /* PBXTargetDependency */,
-			);
-			name = "Map PicsTests";
-			productName = "Map PicsTests";
-			productReference = DDDEEF6817A952E6003D2C20 /* Map PicsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -202,8 +198,12 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = MapBox;
 				TargetAttributes = {
-					DDDEEF6717A952E6003D2C20 = {
-						TestTargetID = DDDEEF4617A952E6003D2C20;
+					DD57E73517A970ED00571387 = {
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -220,98 +220,135 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DDDEEF4617A952E6003D2C20 /* Map Pics */,
-				DDDEEF6717A952E6003D2C20 /* Map PicsTests */,
+				DDDEEF4617A952E6003D2C20 /* Map Pics Mac */,
+				DD57E73517A970ED00571387 /* Map Pics iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DD57E73417A970ED00571387 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57E74217A970ED00571387 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDDEEF4517A952E6003D2C20 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDDEEF5517A952E6003D2C20 /* InfoPlist.strings in Resources */,
-				DDDEEF6317A952E6003D2C20 /* Images.xcassets in Resources */,
-				DDDEEF5B17A952E6003D2C20 /* Credits.rtf in Resources */,
-				DDDEEF6117A952E6003D2C20 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DDDEEF6617A952E6003D2C20 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DDDEEF7317A952E6003D2C20 /* InfoPlist.strings in Resources */,
+				DD57E78517A97B7000571387 /* InfoPlist.strings in Resources */,
+				DD57E78417A97B7000571387 /* Credits.rtf in Resources */,
+				DD57E78317A97B7000571387 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DD57E73217A970ED00571387 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD57E74417A970ED00571387 /* main.m in Sources */,
+				DD57E75117A970ED00571387 /* MPViewController.m in Sources */,
+				DD57E74817A970ED00571387 /* MPAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DDDEEF4317A952E6003D2C20 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDDEEF5717A952E6003D2C20 /* main.m in Sources */,
-				DDDEEF5E17A952E6003D2C20 /* MPAppDelegate.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DDDEEF6417A952E6003D2C20 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DDDEEF7517A952E6003D2C20 /* Map_PicsTests.m in Sources */,
+				DD57E78717A97B7000571387 /* main.m in Sources */,
+				DD57E78117A97B7000571387 /* MPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		DDDEEF6D17A952E6003D2C20 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DDDEEF4617A952E6003D2C20 /* Map Pics */;
-			targetProxy = DDDEEF6C17A952E6003D2C20 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		DDDEEF5317A952E6003D2C20 /* InfoPlist.strings */ = {
+		DD57E74017A970ED00571387 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DDDEEF5417A952E6003D2C20 /* en */,
+				DD57E74117A970ED00571387 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		DDDEEF5917A952E6003D2C20 /* Credits.rtf */ = {
+		DD57E77717A97B7000571387 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DDDEEF5A17A952E6003D2C20 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		DDDEEF5F17A952E6003D2C20 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DDDEEF6017A952E6003D2C20 /* Base */,
+				DD57E77817A97B7000571387 /* Base */,
 			);
 			name = MainMenu.xib;
-			sourceTree = "<group>";
+			path = "Map Pics Mac/Base.lproj";
+			sourceTree = SOURCE_ROOT;
 		};
-		DDDEEF7117A952E6003D2C20 /* InfoPlist.strings */ = {
+		DD57E77A17A97B7000571387 /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DDDEEF7217A952E6003D2C20 /* en */,
+				DD57E77B17A97B7000571387 /* en */,
+			);
+			name = Credits.rtf;
+			path = "Map Pics Mac/en.lproj";
+			sourceTree = SOURCE_ROOT;
+		};
+		DD57E77C17A97B7000571387 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DD57E77D17A97B7000571387 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
+			path = "Map Pics Mac/en.lproj";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DD57E76717A970EE00571387 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Map Pics iOS/Map Pics iOS-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = "iphone-exif-read-only/Classes";
+				INFOPLIST_FILE = "Map Pics iOS/Map Pics iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "Map Pics";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DD57E76817A970EE00571387 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Map Pics iOS/Map Pics iOS-Prefix.pch";
+				HEADER_SEARCH_PATHS = "iphone-exif-read-only/Classes";
+				INFOPLIST_FILE = "Map Pics iOS/Map Pics iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_NAME = "Map Pics";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		DDDEEF7617A952E6003D2C20 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -344,9 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -377,8 +412,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -388,9 +421,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Map Pics/Map Pics-Prefix.pch";
-				INFOPLIST_FILE = "Map Pics/Map Pics-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Map Pics Mac/Map Pics Mac-Prefix.pch";
+				INFOPLIST_FILE = "Map Pics Mac/Map Pics Mac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "Map Pics";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -401,56 +435,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Map Pics/Map Pics-Prefix.pch";
-				INFOPLIST_FILE = "Map Pics/Map Pics-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "Map Pics Mac/Map Pics Mac-Prefix.pch";
+				INFOPLIST_FILE = "Map Pics Mac/Map Pics Mac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "Map Pics";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		DDDEEF7C17A952E6003D2C20 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Map Pics.app/Contents/MacOS/Map Pics";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Map Pics/Map Pics-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Map PicsTests/Map PicsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		DDDEEF7D17A952E6003D2C20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Map Pics.app/Contents/MacOS/Map Pics";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Map Pics/Map Pics-Prefix.pch";
-				INFOPLIST_FILE = "Map PicsTests/Map PicsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DD57E76617A970EE00571387 /* Build configuration list for PBXNativeTarget "Map Pics iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DD57E76717A970EE00571387 /* Debug */,
+				DD57E76817A970EE00571387 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DDDEEF4217A952E6003D2C20 /* Build configuration list for PBXProject "Map Pics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -460,21 +464,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DDDEEF7817A952E6003D2C20 /* Build configuration list for PBXNativeTarget "Map Pics" */ = {
+		DDDEEF7817A952E6003D2C20 /* Build configuration list for PBXNativeTarget "Map Pics Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DDDEEF7917A952E6003D2C20 /* Debug */,
 				DDDEEF7A17A952E6003D2C20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-		};
-		DDDEEF7B17A952E6003D2C20 /* Build configuration list for PBXNativeTarget "Map PicsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DDDEEF7C17A952E6003D2C20 /* Debug */,
-				DDDEEF7D17A952E6003D2C20 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
