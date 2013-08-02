@@ -26,8 +26,6 @@
 {
     [super viewDidLoad];
 
-    srand(time(nil));
-
     self.actionQueue = [NSOperationQueue new];
     self.actionQueue.maxConcurrentOperationCount = 1;
 
