@@ -13,6 +13,7 @@
 @interface MPViewController ()
 
 @property (nonatomic, strong) MKMapView *mapView;
+@property (nonatomic, strong) MKMapView *thumbMapView;
 @property (nonatomic, strong) NSOperationQueue *actionQueue;
 
 @end
@@ -36,11 +37,44 @@
     self.mapView.userInteractionEnabled = NO;
     [self.view addSubview:self.mapView];
 
-    MKTileOverlay *overlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-9sbbzbt9/{z}/{x}/{y}.png"];
-    overlay.minimumZ = 0;
-    overlay.maximumZ = 19;
-    overlay.canReplaceMapContent = YES;
-    [self.mapView addOverlay:overlay];
+    MKTileOverlay *satOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-9sbbzbt9/{z}/{x}/{y}.png"];
+    satOverlay.minimumZ = 0;
+    satOverlay.maximumZ = 19;
+    satOverlay.canReplaceMapContent = YES;
+    [self.mapView addOverlay:satOverlay];
+
+    self.thumbMapView = [[MKMapView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width  - (self.view.bounds.size.width / 5) - 10,
+                                                                    self.view.bounds.size.height - (self.view.bounds.size.width / 5) - 10,
+                                                                    self.view.bounds.size.width / 5,
+                                                                    self.view.bounds.size.width / 5)];
+    self.thumbMapView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+    self.thumbMapView.delegate = self;
+    self.thumbMapView.userInteractionEnabled = NO;
+    self.thumbMapView.layer.borderColor = [[UIColor blackColor] CGColor];
+    self.thumbMapView.layer.borderWidth = 1.0;
+    self.thumbMapView.region = MKCoordinateRegionForMapRect(MKMapRectWorld);
+    self.thumbMapView.alpha = 0.95;
+    [self.view insertSubview:self.thumbMapView aboveSubview:self.mapView];
+
+    MKTileOverlay *grayOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-xpollpqm/{z}/{x}/{y}.png"];
+    grayOverlay.minimumZ = 0;
+    grayOverlay.maximumZ = 19;
+    grayOverlay.canReplaceMapContent = YES;
+    [self.thumbMapView addOverlay:grayOverlay];
+
+    UIGraphicsBeginImageContext(self.thumbMapView.bounds.size);
+    CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[[UIColor redColor] colorWithAlphaComponent:0.25] CGColor]);
+    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 1.0);
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.thumbMapView.bounds.size.width / 2, 0);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.thumbMapView.bounds.size.width / 2, self.thumbMapView.bounds.size.height);
+    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 0, self.thumbMapView.bounds.size.height / 2);
+    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.thumbMapView.bounds.size.width, self.thumbMapView.bounds.size.height / 2);
+    CGContextStrokePath(UIGraphicsGetCurrentContext());
+    UIImageView *crosshairs = [[UIImageView alloc] initWithImage:UIGraphicsGetImageFromCurrentImageContext()];
+    UIGraphicsEndImageContext();
+    crosshairs.frame = self.thumbMapView.frame;
+    crosshairs.autoresizingMask = self.thumbMapView.autoresizingMask;
+    [self.view insertSubview:crosshairs aboveSubview:self.thumbMapView];
 
     NSString *baseURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=@@METHOD@@&api_key=%@&format=json&nojsoncallback=1", kMPAPIKey];
 
@@ -180,43 +214,46 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    if ([annotation isKindOfClass:[MKUserLocation class]])
-        return nil;
-
-    if ([annotation isKindOfClass:[MKPointAnnotation class]])
+    if ([mapView isEqual:self.mapView])
     {
-        MKPointAnnotation *point = (MKPointAnnotation *)annotation;
-        MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:point reuseIdentifier:nil];
-        pin.canShowCallout = YES;
+        if ([annotation isKindOfClass:[MKUserLocation class]])
+            return nil;
 
-        UIImage *photo = [UIImage imageWithData:[[NSData alloc] initWithBase64EncodedString:point.subtitle options:0]];
-        point.subtitle = nil;
+        if ([annotation isKindOfClass:[MKPointAnnotation class]])
+        {
+            MKPointAnnotation *point = (MKPointAnnotation *)annotation;
+            MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:point reuseIdentifier:nil];
+            pin.canShowCallout = YES;
 
-        UIGraphicsBeginImageContext(CGSizeMake(photo.size.width, photo.size.height));
-        CGContextAddPath(UIGraphicsGetCurrentContext(), [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, photo.size.width, photo.size.height) cornerRadius:10] CGPath]);
-        CGContextClip(UIGraphicsGetCurrentContext());
-        [photo drawAtPoint:CGPointMake(0, 0)];
-        photo = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+            UIImage *photo = [UIImage imageWithData:[[NSData alloc] initWithBase64EncodedString:point.subtitle options:0]];
+            point.subtitle = nil;
 
-        UIGraphicsBeginImageContext(CGSizeMake(photo.size.width + 20, photo.size.height + 20));
-        CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), CGSizeMake(0, 1), 10, [[UIColor blackColor] CGColor]);
-        [photo drawAtPoint:CGPointMake(10, 10)];
-        pin.image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
+            UIGraphicsBeginImageContext(CGSizeMake(photo.size.width, photo.size.height));
+            CGContextAddPath(UIGraphicsGetCurrentContext(), [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, photo.size.width, photo.size.height) cornerRadius:10] CGPath]);
+            CGContextClip(UIGraphicsGetCurrentContext());
+            [photo drawAtPoint:CGPointMake(0, 0)];
+            photo = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
 
-        pin.alpha = 0;
+            UIGraphicsBeginImageContext(CGSizeMake(photo.size.width + 20, photo.size.height + 20));
+            CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), CGSizeMake(0, 1), 10, [[UIColor blackColor] CGColor]);
+            [photo drawAtPoint:CGPointMake(10, 10)];
+            pin.image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
 
-        [UIView animateWithDuration:1.0
-                              delay:0.0
-                            options:UIViewAnimationOptionCurveEaseIn
-                         animations:^(void)
-                         {
-                             pin.alpha = 1.0;
-                         }
-                         completion:nil];
+            pin.alpha = 0;
 
-        return pin;
+            [UIView animateWithDuration:1.0
+                                  delay:0.0
+                                options:UIViewAnimationOptionCurveEaseIn
+                             animations:^(void)
+                             {
+                                 pin.alpha = 1.0;
+                             }
+                             completion:nil];
+
+            return pin;
+        }
     }
 
     return nil;
@@ -227,18 +264,27 @@
     if ([overlay isKindOfClass:[MKTileOverlay class]])
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
 
-    if ([overlay isKindOfClass:[MKPolyline class]])
+    if ([mapView isEqual:self.mapView])
     {
-        MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+        if ([overlay isKindOfClass:[MKPolyline class]])
+        {
+            MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
 
-        renderer.fillColor   = [UIColor blackColor];
-        renderer.strokeColor = [UIColor redColor];
-        renderer.lineWidth   = 2;
+            renderer.fillColor   = [UIColor blackColor];
+            renderer.strokeColor = [UIColor redColor];
+            renderer.lineWidth   = 2;
 
-        return renderer;
+            return renderer;
+        }
     }
 
     return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    if ([mapView isEqual:self.mapView])
+        self.thumbMapView.centerCoordinate = self.mapView.centerCoordinate;
 }
 
 @end
