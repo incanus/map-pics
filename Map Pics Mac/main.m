@@ -1,6 +1,6 @@
 //
 //  main.m
-//  Map Pics
+//  Map Pics Mac
 //
 //  Created by Justin R. Miller on 7/31/13.
 //  Copyright (c) 2013 MapBox. All rights reserved.
