@@ -38,9 +38,13 @@
 
 - (void)performInitialSetup
 {
+    // setup UI event queue
+    //
     self.actionQueue = [NSOperationQueue new];
     self.actionQueue.maxConcurrentOperationCount = 1;
-    
+
+    // setup main map view
+    //
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
 #if TARGET_OS_IPHONE
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -50,13 +54,17 @@
     self.mapView.delegate = self;
     self.mapView.zoomEnabled = self.mapView.scrollEnabled = self.mapView.rotateEnabled = self.mapView.pitchEnabled = NO;
     [self.view addSubview:self.mapView];
-    
+
+    // add MapBox Satellite overlay
+    //
     MKTileOverlay *satOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-9sbbzbt9/{z}/{x}/{y}.png"];
     satOverlay.minimumZ = 0;
     satOverlay.maximumZ = 19;
     satOverlay.canReplaceMapContent = YES;
     [self.mapView addOverlay:satOverlay];
-    
+
+    // setup thumbnail map view
+    //
     self.thumbMapView = [[MKMapView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width  - (self.view.bounds.size.width / 5) - 10,
                                                                     self.view.bounds.size.height - (self.view.bounds.size.width / 5) - 10,
                                                                     self.view.bounds.size.width / 5,
@@ -78,41 +86,54 @@
     self.thumbMapView.centerCoordinate = self.mapView.centerCoordinate;
     self.thumbMapView.layer.opacity = 0.95;
     [self.view addSubview:self.thumbMapView];
-    
+
+    // add MapBox light-themed overlay
+    //
     MKTileOverlay *grayOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-xpollpqm/{z}/{x}/{y}.png"];
     grayOverlay.minimumZ = 0;
     grayOverlay.maximumZ = 19;
     grayOverlay.canReplaceMapContent = YES;
     [self.thumbMapView addOverlay:grayOverlay];
 
+    // setup initial Flickr details
+    //
     NSString *baseURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=@@METHOD@@&api_key=%@&format=json&nojsoncallback=1", kMPAPIKey];
-    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    
     configuration.HTTPAdditionalHeaders = @{ @"User-Agent" : @"Map Pics" };
-    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-    
+
+    // determine photo size
+    //
 #if TARGET_OS_IPHONE
     NSString *photoURLField = @"url_s";
 #else
     NSString *photoURLField = @"url_m";
 #endif
-    
+
+    // build search URL
+    //
     NSURL *searchURL = [NSURL URLWithString:[[baseURLString stringByReplacingOccurrencesOfString:@"@@METHOD@@" withString:@"flickr.photos.search"] stringByAppendingString:[NSString stringWithFormat:@"&tags=travel&sort=interestingness-desc&has_geo=1&extras=geo,%@&media=photos&per_page=100", photoURLField]]];
-    
+
+    // kick off search
+    //
     [[session dataTaskWithURL:searchURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         if (data)
         {
+            // parse search results
+            //
             NSDictionary *searchResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-              
+
             for (NSDictionary *photo in searchResults[@"photos"][@"photo"])
             {
+                // obtain photos with associated places
+                //
                 if (photo[@"place_id"])
                 {
                     NSURL *photoURL = [NSURL URLWithString:photo[photoURLField]];
-                      
+
+                    // kick off photo download
+                    //
                     [[session dataTaskWithURL:photoURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                     {
                         if (data)
@@ -120,13 +141,19 @@
                             NSData *imageData = data;
                                 
                             NSURL *placeURL = [NSURL URLWithString:[[[baseURLString stringByReplacingOccurrencesOfString:@"@@METHOD@@" withString:@"flickr.places.getInfo"] stringByAppendingString:@"&place_id="] stringByAppendingString:photo[@"place_id"]]];
-                                
+
+                            // kick off place info download
+                            //
                             [[session dataTaskWithURL:placeURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                             {
                                 if (data)
                                 {
+                                    // parse place results
+                                    //
                                     NSDictionary *placeResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-                                    
+
+                                    // get polyline & its bounding box
+                                    //
                                     NSString *polylineString = placeResults[@"place"][@"shapedata"][@"polylines"][@"polyline"][0][@"_content"];
                                     NSArray *points = [polylineString componentsSeparatedByString:@" "];
                                     CLLocationCoordinate2D coordinates[[points count]];
@@ -163,22 +190,30 @@
                                         },
                                     };
                                     placeRegion.center = CLLocationCoordinate2DMake(minLat + (placeRegion.span.latitudeDelta / 2), minLon + (placeRegion.span.longitudeDelta / 2));
-                                          
+
+                                    // build photo point & save image into annotation
+                                    //
                                     MKPointAnnotation *photoPoint = [MKPointAnnotation new];
                                     photoPoint.coordinate = CLLocationCoordinate2DMake([photo[@"latitude"] doubleValue], [photo[@"longitude"] doubleValue]);
                                     photoPoint.title = photo[@"title"];
                                     photoPoint.subtitle = [imageData base64EncodedStringWithOptions:0];
-                                          
+
+                                    // enqueue UI actions
+                                    //
                                     [self.actionQueue addOperationWithBlock:^(void)
                                     {
+                                        // first, show photo place polyline
+                                        //
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
                                             [self.mapView addOverlay:placePolyline];
                                             [self.mapView setRegion:placeRegion animated:YES];
                                         });
-                                        
+
                                         sleep(4);
-                                        
+
+                                        // second, add photo point & zoom camera
+                                        //
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
                                             [self.mapView addAnnotation:photoPoint];
@@ -194,7 +229,9 @@
                                         });
                                         
                                         sleep(8);
-                                        
+
+                                        // third, clean up after this photo
+                                        //
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
                                             [self.mapView removeAnnotation:placePolyline];
@@ -238,6 +275,8 @@
             MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:point reuseIdentifier:nil];
             pin.canShowCallout = YES;
 
+            // de-encode photo from annotation, round its corners, set to pin image, add a shadow, and animate fade in
+            //
 #if TARGET_OS_IPHONE
             UIImage *photo = [UIImage imageWithData:[[NSData alloc] initWithBase64EncodedString:point.subtitle options:0]];
             
@@ -299,6 +338,8 @@
             [pin.layer addAnimation:fade forKey:@"opacity"];
             pin.layer.opacity = 1.0;
 #endif
+            // be sure to clear the encoded image data
+            //
             point.subtitle = nil;
             
             return pin;
@@ -310,9 +351,13 @@
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay
 {
+    // MapBox tile overlays
+    //
     if ([overlay isKindOfClass:[MKTileOverlay class]])
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
 
+    // photo place polylines
+    //
     if ([mapView isEqual:self.mapView])
     {
         if ([overlay isKindOfClass:[MKPolyline class]])
@@ -337,6 +382,8 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
+    // keep thumbnail map in sync with main map
+    //
     if ([mapView isEqual:self.mapView])
         [self.thumbMapView setCenterCoordinate:mapView.centerCoordinate animated:NO];
 }
