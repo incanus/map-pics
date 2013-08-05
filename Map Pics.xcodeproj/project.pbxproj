@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD1802CA17B0697600833ACE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1802C917B0697600833ACE /* MapKit.framework */; };
 		DD57E74217A970ED00571387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57E74017A970ED00571387 /* InfoPlist.strings */; };
 		DD57E74417A970ED00571387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E74317A970ED00571387 /* main.m */; };
 		DD57E74817A970ED00571387 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E74717A970ED00571387 /* MPAppDelegate.m */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD1802C917B0697600833ACE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DD57E73617A970ED00571387 /* Map Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Pics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD57E73F17A970ED00571387 /* Map Pics iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Map Pics iOS-Info.plist"; path = "Map Pics iOS/Map Pics iOS-Info.plist"; sourceTree = SOURCE_ROOT; };
 		DD57E74117A970ED00571387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDEEF4B17A952E6003D2C20 /* Cocoa.framework in Frameworks */,
+				DD1802CA17B0697600833ACE /* MapKit.framework in Frameworks */,
 				DDA4D8E217B050D7006F4026 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */,
+				DD1802C917B0697600833ACE /* MapKit.framework */,
 				DDA4D8E117B050D7006F4026 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
@@ -216,8 +220,17 @@
 				ORGANIZATIONNAME = MapBox;
 				TargetAttributes = {
 					DD57E73517A970ED00571387 = {
+						DevelopmentTeam = 4QJUGA28YU;
 						SystemCapabilities = {
 							com.apple.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					DDDEEF4617A952E6003D2C20 = {
+						DevelopmentTeam = 4QJUGA28YU;
+						SystemCapabilities = {
+							com.apple.Mac = {
 								enabled = 1;
 							};
 						};
@@ -331,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Map Pics iOS/Map Pics iOS-Prefix.pch";
@@ -342,6 +356,7 @@
 				INFOPLIST_FILE = "Map Pics iOS/Map Pics iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Map Pics";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -353,6 +368,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Map Pics iOS/Map Pics iOS-Prefix.pch";
@@ -360,6 +376,7 @@
 				INFOPLIST_FILE = "Map Pics iOS/Map Pics iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Map Pics";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -437,12 +454,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Map Pics Mac/Map Pics Mac-Prefix.pch";
 				INFOPLIST_FILE = "Map Pics Mac/Map Pics Mac-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "Map Pics";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -451,12 +471,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Map Pics Mac/Map Pics Mac-Prefix.pch";
 				INFOPLIST_FILE = "Map Pics Mac/Map Pics Mac-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "Map Pics";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
