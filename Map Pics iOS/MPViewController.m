@@ -29,9 +29,7 @@
 {
     [super viewDidLoad];
 }
-#endif
-
-#if TARGET_OS_MAC
+#else
 - (void)awakeFromNib
 {
     [self performInitialSetup];
