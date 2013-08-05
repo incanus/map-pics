@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self performInitialSetup];
 }
 #else
 - (void)awakeFromNib
