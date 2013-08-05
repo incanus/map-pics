@@ -8,6 +8,8 @@
 
 #import "MPViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 #define kMPAPIKey @"583c362ae5aa9d5c89ddc6103ef201ae"
 
 @interface MPViewController ()
@@ -22,96 +24,111 @@
 
 @implementation MPViewController
 
+#if TARGET_OS_IPHONE
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+}
+#endif
 
+#if TARGET_OS_MAC
+- (void)awakeFromNib
+{
+    [self performInitialSetup];
+}
+#endif
+
+- (void)performInitialSetup
+{
     self.actionQueue = [NSOperationQueue new];
     self.actionQueue.maxConcurrentOperationCount = 1;
-
+    
     self.mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+#if TARGET_OS_IPHONE
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+#else
+    self.mapView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+#endif
     self.mapView.delegate = self;
-    self.mapView.userInteractionEnabled = NO;
+    self.mapView.zoomEnabled = self.mapView.scrollEnabled = self.mapView.rotateEnabled = self.mapView.pitchEnabled = NO;
     [self.view addSubview:self.mapView];
-
+    
     MKTileOverlay *satOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-9sbbzbt9/{z}/{x}/{y}.png"];
     satOverlay.minimumZ = 0;
     satOverlay.maximumZ = 19;
     satOverlay.canReplaceMapContent = YES;
     [self.mapView addOverlay:satOverlay];
-
+    
     self.thumbMapView = [[MKMapView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width  - (self.view.bounds.size.width / 5) - 10,
                                                                     self.view.bounds.size.height - (self.view.bounds.size.width / 5) - 10,
                                                                     self.view.bounds.size.width / 5,
                                                                     self.view.bounds.size.width / 5)];
+#if TARGET_OS_IPHONE
     self.thumbMapView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+#else
+    self.thumbMapView.autoresizingMask = NSViewMinXMargin | NSViewMinYMargin;
+#endif
     self.thumbMapView.delegate = self;
-    self.thumbMapView.userInteractionEnabled = NO;
+    self.thumbMapView.zoomEnabled = self.thumbMapView.scrollEnabled = self.thumbMapView.rotateEnabled = self.thumbMapView.pitchEnabled = NO;
+#if TARGET_OS_IPHONE
     self.thumbMapView.layer.borderColor = [[UIColor blackColor] CGColor];
+#else
+    self.thumbMapView.layer.borderColor = [[NSColor blackColor] CGColor];
+#endif
     self.thumbMapView.layer.borderWidth = 1.0;
     self.thumbMapView.region = MKCoordinateRegionForMapRect(MKMapRectWorld);
-    self.thumbMapView.alpha = 0.95;
-    [self.view insertSubview:self.thumbMapView aboveSubview:self.mapView];
-
+    self.thumbMapView.centerCoordinate = self.mapView.centerCoordinate;
+    self.thumbMapView.layer.opacity = 0.95;
+    [self.view addSubview:self.thumbMapView];
+    
     MKTileOverlay *grayOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://a.tiles.mapbox.com/v3/justin.map-xpollpqm/{z}/{x}/{y}.png"];
     grayOverlay.minimumZ = 0;
     grayOverlay.maximumZ = 19;
     grayOverlay.canReplaceMapContent = YES;
     [self.thumbMapView addOverlay:grayOverlay];
 
-    UIGraphicsBeginImageContext(self.thumbMapView.bounds.size);
-    CGContextSetStrokeColorWithColor(UIGraphicsGetCurrentContext(), [[[UIColor redColor] colorWithAlphaComponent:0.25] CGColor]);
-    CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 1.0);
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), self.thumbMapView.bounds.size.width / 2, 0);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.thumbMapView.bounds.size.width / 2, self.thumbMapView.bounds.size.height);
-    CGContextMoveToPoint(UIGraphicsGetCurrentContext(), 0, self.thumbMapView.bounds.size.height / 2);
-    CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), self.thumbMapView.bounds.size.width, self.thumbMapView.bounds.size.height / 2);
-    CGContextStrokePath(UIGraphicsGetCurrentContext());
-    UIImageView *crosshairs = [[UIImageView alloc] initWithImage:UIGraphicsGetImageFromCurrentImageContext()];
-    UIGraphicsEndImageContext();
-    crosshairs.frame = self.thumbMapView.frame;
-    crosshairs.autoresizingMask = self.thumbMapView.autoresizingMask;
-    [self.view insertSubview:crosshairs aboveSubview:self.thumbMapView];
-
     NSString *baseURLString = [NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=@@METHOD@@&api_key=%@&format=json&nojsoncallback=1", kMPAPIKey];
-
+    
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-
+    
     configuration.HTTPAdditionalHeaders = @{ @"User-Agent" : @"Map Pics" };
-
+    
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
-
-    NSURL *searchURL = [NSURL URLWithString:[[baseURLString stringByReplacingOccurrencesOfString:@"@@METHOD@@" withString:@"flickr.photos.search"] stringByAppendingString:@"&tags=unesco,travel&sort=interestingness-desc&has_geo=1&extras=geo,url_s,machine_tags&media=photos&per_page=100"]];
-
+    
+#if TARGET_OS_IPHONE
+    NSString *photoURLField = @"url_s";
+#else
+    NSString *photoURLField = @"url_m";
+#endif
+    
+    NSURL *searchURL = [NSURL URLWithString:[[baseURLString stringByReplacingOccurrencesOfString:@"@@METHOD@@" withString:@"flickr.photos.search"] stringByAppendingString:[NSString stringWithFormat:@"&tags=travel&sort=interestingness-desc&has_geo=1&extras=geo,%@&media=photos&per_page=100", photoURLField]]];
+    
     [[session dataTaskWithURL:searchURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
     {
         if (data)
         {
             NSDictionary *searchResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-            NSLog(@"search yielded %i results", [searchResults[@"photos"][@"photo"] count]);
-
+              
             for (NSDictionary *photo in searchResults[@"photos"][@"photo"])
             {
                 if (photo[@"place_id"])
                 {
-                    NSURL *photoURL = [NSURL URLWithString:photo[@"url_s"]];
-
+                    NSURL *photoURL = [NSURL URLWithString:photo[photoURLField]];
+                      
                     [[session dataTaskWithURL:photoURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                     {
                         if (data)
                         {
                             NSData *imageData = data;
-
+                                
                             NSURL *placeURL = [NSURL URLWithString:[[[baseURLString stringByReplacingOccurrencesOfString:@"@@METHOD@@" withString:@"flickr.places.getInfo"] stringByAppendingString:@"&place_id="] stringByAppendingString:photo[@"place_id"]]];
-
+                                
                             [[session dataTaskWithURL:placeURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                             {
                                 if (data)
                                 {
                                     NSDictionary *placeResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
+                                    
                                     NSString *polylineString = placeResults[@"place"][@"shapedata"][@"polylines"][@"polyline"][0][@"_content"];
                                     NSArray *points = [polylineString componentsSeparatedByString:@" "];
                                     CLLocationCoordinate2D coordinates[[points count]];
@@ -148,12 +165,12 @@
                                         },
                                     };
                                     placeRegion.center = CLLocationCoordinate2DMake(minLat + (placeRegion.span.latitudeDelta / 2), minLon + (placeRegion.span.longitudeDelta / 2));
-
+                                          
                                     MKPointAnnotation *photoPoint = [MKPointAnnotation new];
                                     photoPoint.coordinate = CLLocationCoordinate2DMake([photo[@"latitude"] doubleValue], [photo[@"longitude"] doubleValue]);
                                     photoPoint.title = photo[@"title"];
                                     photoPoint.subtitle = [imageData base64EncodedStringWithOptions:0];
-
+                                          
                                     [self.actionQueue addOperationWithBlock:^(void)
                                     {
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
@@ -161,9 +178,9 @@
                                             [self.mapView addOverlay:placePolyline];
                                             [self.mapView setRegion:placeRegion animated:YES];
                                         });
-
+                                        
                                         sleep(4);
-
+                                        
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
                                             [self.mapView addAnnotation:photoPoint];
@@ -177,9 +194,9 @@
                                             camera.pitch = 40;
                                             [self.mapView setCamera:camera animated:YES];
                                         });
-
+                                        
                                         sleep(8);
-
+                                        
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
                                             [self.mapView removeAnnotation:placePolyline];
@@ -223,24 +240,23 @@
             MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:point reuseIdentifier:nil];
             pin.canShowCallout = YES;
 
+#if TARGET_OS_IPHONE
             UIImage *photo = [UIImage imageWithData:[[NSData alloc] initWithBase64EncodedString:point.subtitle options:0]];
-            point.subtitle = nil;
-
+            
             UIGraphicsBeginImageContext(CGSizeMake(photo.size.width, photo.size.height));
-            CGContextAddPath(UIGraphicsGetCurrentContext(), [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, photo.size.width, photo.size.height) cornerRadius:10] CGPath]);
-            CGContextClip(UIGraphicsGetCurrentContext());
+            CGContextRef context = UIGraphicsGetCurrentContext();
+            CGContextAddPath(context, [[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, photo.size.width, photo.size.height) cornerRadius:10] CGPath]);
+            CGContextClip(context);
             [photo drawAtPoint:CGPointMake(0, 0)];
-            photo = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-
-            UIGraphicsBeginImageContext(CGSizeMake(photo.size.width + 20, photo.size.height + 20));
-            CGContextSetShadowWithColor(UIGraphicsGetCurrentContext(), CGSizeMake(0, 1), 10, [[UIColor blackColor] CGColor]);
-            [photo drawAtPoint:CGPointMake(10, 10)];
             pin.image = UIGraphicsGetImageFromCurrentImageContext();
             UIGraphicsEndImageContext();
-
+            
+            pin.layer.shadowColor = [[UIColor blackColor] CGColor];
+            pin.layer.shadowOffset = CGSizeMake(0, 1);
+            pin.layer.shadowRadius = 10;
+            pin.layer.shadowOpacity = 1.0;
+            
             pin.alpha = 0;
-
             [UIView animateWithDuration:1.0
                                   delay:0.0
                                 options:UIViewAnimationOptionCurveEaseIn
@@ -249,7 +265,44 @@
                                  pin.alpha = 1.0;
                              }
                              completion:nil];
+#else
+            NSImage *photo = [[NSImage alloc] initWithData:[[NSData alloc] initWithBase64EncodedString:point.subtitle options:0]];
+            
+            NSImage *roundedImage = [[NSImage alloc] initWithSize:photo.size];
+            NSBitmapImageRep *roundedImageRep = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
+                                                                                        pixelsWide:roundedImage.size.width
+                                                                                        pixelsHigh:roundedImage.size.height
+                                                                                     bitsPerSample:8
+                                                                                   samplesPerPixel:4
+                                                                                          hasAlpha:YES
+                                                                                          isPlanar:NO
+                                                                                    colorSpaceName:NSCalibratedRGBColorSpace
+                                                                                       bytesPerRow:0
+                                                                                      bitsPerPixel:0];
+            [roundedImage addRepresentation:roundedImageRep];
+            [roundedImage lockFocus];
+            [[NSBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, photo.size.width, photo.size.height) xRadius:10 yRadius:10] setClip];
+            [photo drawAtPoint:NSMakePoint(0, 0) fromRect:NSMakeRect(0, 0, photo.size.width, photo.size.height) operation:NSCompositeCopy fraction:1.0];
+            [roundedImage unlockFocus];
+            pin.image = roundedImage;
+            
+            pin.layer.shadowColor = [[NSColor blackColor] CGColor];
+            pin.layer.shadowOffset = CGSizeMake(0, 1);
+            pin.layer.shadowRadius = 10;
+            pin.layer.shadowOpacity = 1.0;
 
+            pin.alphaValue = 0;
+            pin.wantsLayer = YES;
+            CABasicAnimation *fade = [CABasicAnimation animationWithKeyPath:@"opacity"];
+            fade.fromValue = @(pin.alphaValue);
+            fade.toValue = @1.0;
+            fade.duration = 1.0;
+            fade.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+            [pin.layer addAnimation:fade forKey:@"opacity"];
+            pin.layer.opacity = 1.0;
+#endif
+            point.subtitle = nil;
+            
             return pin;
         }
     }
@@ -268,8 +321,13 @@
         {
             MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
 
+#if TARGET_OS_IPHONE
             renderer.fillColor   = [UIColor blackColor];
             renderer.strokeColor = [UIColor redColor];
+#else
+            renderer.fillColor   = [NSColor blackColor];
+            renderer.strokeColor = [NSColor redColor];
+#endif
             renderer.lineWidth   = 2;
 
             return renderer;
@@ -282,7 +340,7 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     if ([mapView isEqual:self.mapView])
-        self.thumbMapView.centerCoordinate = self.mapView.centerCoordinate;
+        [self.thumbMapView setCenterCoordinate:mapView.centerCoordinate animated:NO];
 }
 
 @end

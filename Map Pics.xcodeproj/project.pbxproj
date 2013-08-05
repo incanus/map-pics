@@ -18,6 +18,9 @@
 		DD57E78417A97B7000571387 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77A17A97B7000571387 /* Credits.rtf */; };
 		DD57E78517A97B7000571387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77C17A97B7000571387 /* InfoPlist.strings */; };
 		DD57E78717A97B7000571387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E77F17A97B7000571387 /* main.m */; };
+		DD5B429C17AC186A005A0BBA /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E75017A970ED00571387 /* MPViewController.m */; };
+		DDA4D8E217B050D7006F4026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA4D8E117B050D7006F4026 /* QuartzCore.framework */; };
+		DDA4D8E417B053E6006F4026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA4D8E317B053E6006F4026 /* QuartzCore.framework */; };
 		DDDEEF4B17A952E6003D2C20 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +44,8 @@
 		DD57E77D17A97B7000571387 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		DD57E77F17A97B7000571387 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Map Pics Mac/main.m"; sourceTree = SOURCE_ROOT; };
 		DD57E78017A97B7000571387 /* Map Pics Mac-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Map Pics Mac-Prefix.pch"; path = "Map Pics Mac/Map Pics Mac-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		DDA4D8E117B050D7006F4026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DDA4D8E317B053E6006F4026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		DDDEEF4717A952E6003D2C20 /* Map Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Pics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -51,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD57E77217A9761500571387 /* MapKit.framework in Frameworks */,
+				DDA4D8E417B053E6006F4026 /* QuartzCore.framework in Frameworks */,
 				DD57E77017A9760200571387 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDDEEF4B17A952E6003D2C20 /* Cocoa.framework in Frameworks */,
+				DDA4D8E217B050D7006F4026 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +78,6 @@
 			children = (
 				DD57E74617A970ED00571387 /* MPAppDelegate.h */,
 				DD57E74717A970ED00571387 /* MPAppDelegate.m */,
-				DD57E74F17A970ED00571387 /* MPViewController.h */,
-				DD57E75017A970ED00571387 /* MPViewController.m */,
 				DD57E73E17A970ED00571387 /* Supporting Files */,
 				DD57E76E17A9759F00571387 /* Frameworks */,
 			);
@@ -94,9 +99,19 @@
 			isa = PBXGroup;
 			children = (
 				DD57E77117A9761500571387 /* MapKit.framework */,
+				DDA4D8E317B053E6006F4026 /* QuartzCore.framework */,
 				DD57E76F17A9760200571387 /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD5B429D17AC1D59005A0BBA /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				DD57E74F17A970ED00571387 /* MPViewController.h */,
+				DD57E75017A970ED00571387 /* MPViewController.m */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 		DDDEEF3E17A952E6003D2C20 = {
@@ -104,6 +119,7 @@
 			children = (
 				DDDEEF5017A952E6003D2C20 /* Map Pics Mac */,
 				DD57E73D17A970ED00571387 /* Map Pics iOS */,
+				DD5B429D17AC1D59005A0BBA /* Shared */,
 				DDDEEF4817A952E6003D2C20 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */,
+				DDA4D8E117B050D7006F4026 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			path = ..;
@@ -263,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD57E78717A97B7000571387 /* main.m in Sources */,
+				DD5B429C17AC186A005A0BBA /* MPViewController.m in Sources */,
 				DD57E78117A97B7000571387 /* MPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
