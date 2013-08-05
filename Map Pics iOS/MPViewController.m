@@ -53,6 +53,7 @@
 #endif
     self.mapView.delegate = self;
     self.mapView.zoomEnabled = self.mapView.scrollEnabled = self.mapView.rotateEnabled = self.mapView.pitchEnabled = NO;
+    self.mapView.showsBuildings = self.mapView.showsPointsOfInterest = NO;
     [self.view addSubview:self.mapView];
 
     // add MapBox Satellite overlay
