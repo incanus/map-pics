@@ -111,8 +111,8 @@
 		DD5B429D17AC1D59005A0BBA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DDF65CC517B08E3300960188 /* MPViewController.m */,
 				DDF65CC617B08E3300960188 /* MPViewController.h */,
+				DDF65CC517B08E3300960188 /* MPViewController.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
