@@ -11,7 +11,6 @@
 		DD57E74217A970ED00571387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57E74017A970ED00571387 /* InfoPlist.strings */; };
 		DD57E74417A970ED00571387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E74317A970ED00571387 /* main.m */; };
 		DD57E74817A970ED00571387 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E74717A970ED00571387 /* MPAppDelegate.m */; };
-		DD57E75117A970ED00571387 /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E75017A970ED00571387 /* MPViewController.m */; };
 		DD57E77017A9760200571387 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57E76F17A9760200571387 /* UIKit.framework */; };
 		DD57E77217A9761500571387 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD57E77117A9761500571387 /* MapKit.framework */; };
 		DD57E78117A97B7000571387 /* MPAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E77317A97B7000571387 /* MPAppDelegate.m */; };
@@ -19,10 +18,11 @@
 		DD57E78417A97B7000571387 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77A17A97B7000571387 /* Credits.rtf */; };
 		DD57E78517A97B7000571387 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DD57E77C17A97B7000571387 /* InfoPlist.strings */; };
 		DD57E78717A97B7000571387 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E77F17A97B7000571387 /* main.m */; };
-		DD5B429C17AC186A005A0BBA /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD57E75017A970ED00571387 /* MPViewController.m */; };
 		DDA4D8E217B050D7006F4026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA4D8E117B050D7006F4026 /* QuartzCore.framework */; };
 		DDA4D8E417B053E6006F4026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDA4D8E317B053E6006F4026 /* QuartzCore.framework */; };
 		DDDEEF4B17A952E6003D2C20 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */; };
+		DDF65CC717B08E3300960188 /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF65CC517B08E3300960188 /* MPViewController.m */; };
+		DDF65CC817B08E3300960188 /* MPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF65CC517B08E3300960188 /* MPViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +34,6 @@
 		DD57E74517A970ED00571387 /* Map Pics iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Map Pics iOS-Prefix.pch"; path = "Map Pics iOS/Map Pics iOS-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		DD57E74617A970ED00571387 /* MPAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPAppDelegate.h; path = "Map Pics iOS/MPAppDelegate.h"; sourceTree = SOURCE_ROOT; };
 		DD57E74717A970ED00571387 /* MPAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = "Map Pics iOS/MPAppDelegate.m"; sourceTree = SOURCE_ROOT; };
-		DD57E74F17A970ED00571387 /* MPViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPViewController.h; path = "Map Pics iOS/MPViewController.h"; sourceTree = SOURCE_ROOT; };
-		DD57E75017A970ED00571387 /* MPViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPViewController.m; path = "Map Pics iOS/MPViewController.m"; sourceTree = SOURCE_ROOT; };
 		DD57E76F17A9760200571387 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		DD57E77117A9761500571387 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		DD57E77317A97B7000571387 /* MPAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPAppDelegate.m; path = "Map Pics Mac/MPAppDelegate.m"; sourceTree = SOURCE_ROOT; };
@@ -50,6 +48,8 @@
 		DDA4D8E317B053E6006F4026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		DDDEEF4717A952E6003D2C20 /* Map Pics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Pics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDEEF4A17A952E6003D2C20 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DDF65CC517B08E3300960188 /* MPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPViewController.m; path = Shared/MPViewController.m; sourceTree = "<group>"; };
+		DDF65CC617B08E3300960188 /* MPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPViewController.h; path = Shared/MPViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +111,8 @@
 		DD5B429D17AC1D59005A0BBA /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				DD57E74F17A970ED00571387 /* MPViewController.h */,
-				DD57E75017A970ED00571387 /* MPViewController.m */,
+				DDF65CC517B08E3300960188 /* MPViewController.m */,
+				DDF65CC617B08E3300960188 /* MPViewController.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD57E74417A970ED00571387 /* main.m in Sources */,
-				DD57E75117A970ED00571387 /* MPViewController.m in Sources */,
+				DDF65CC817B08E3300960188 /* MPViewController.m in Sources */,
 				DD57E74817A970ED00571387 /* MPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD57E78717A97B7000571387 /* main.m in Sources */,
-				DD5B429C17AC186A005A0BBA /* MPViewController.m in Sources */,
+				DDF65CC717B08E3300960188 /* MPViewController.m in Sources */,
 				DD57E78117A97B7000571387 /* MPAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
