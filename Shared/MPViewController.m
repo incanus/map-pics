@@ -180,8 +180,8 @@
                                             maxLon = coordinates[i].longitude;
                                         i++;
                                     }
-                                    MKPolyline *placePolyline = [MKPolyline polylineWithCoordinates:coordinates count:[points count]];
-                                    placePolyline.title = placeResults[@"place"][@"woe_name"];
+                                    MKPolygon *placePolygon = [MKPolygon polygonWithCoordinates:coordinates count:[points count]];
+                                    placePolygon.title = placeResults[@"place"][@"woe_name"];
                                     MKCoordinateRegion placeRegion = {
                                         .center = {
                                             .latitude  = 0,
@@ -209,7 +209,7 @@
                                         //
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
-                                            [self.mapView addOverlay:placePolyline];
+                                            [self.mapView addOverlay:placePolygon];
                                             [self.mapView setRegion:placeRegion animated:YES];
                                         });
 
@@ -237,7 +237,7 @@
                                         //
                                         dispatch_sync(dispatch_get_main_queue(), ^(void)
                                         {
-                                            [self.mapView removeAnnotation:placePolyline];
+                                            [self.mapView removeAnnotation:placePolygon];
                                             [self.mapView removeAnnotation:photoPoint];
                                         });
                                     }];
@@ -359,19 +359,19 @@
     if ([overlay isKindOfClass:[MKTileOverlay class]])
         return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
 
-    // photo place polylines
+    // photo place polygons
     //
     if ([mapView isEqual:self.mapView])
     {
-        if ([overlay isKindOfClass:[MKPolyline class]])
+        if ([overlay isKindOfClass:[MKPolygon class]])
         {
-            MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+            MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:overlay];
 
 #if TARGET_OS_IPHONE
-            renderer.fillColor   = [UIColor blackColor];
+            renderer.fillColor   = [UIColor colorWithWhite:0 alpha:0.25];
             renderer.strokeColor = [UIColor redColor];
 #else
-            renderer.fillColor   = [NSColor blackColor];
+            renderer.fillColor   = [NSColor colorWithDeviceWhite:0 alpha:0.25];
             renderer.strokeColor = [NSColor redColor];
 #endif
             renderer.lineWidth   = 2;
